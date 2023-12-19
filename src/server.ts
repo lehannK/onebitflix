@@ -1,5 +1,4 @@
-// src/server.ts
-// arquivo para testar o express
+// arquivo para configurar o express
 
 import express from "express";
 import { sequelize } from "./database";

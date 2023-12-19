@@ -2,12 +2,14 @@ import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express";
 import AdminJSSequelize from "@adminjs/sequelize";
 import { sequelize } from "../database";
+import { adminJsResources } from "./resources";
 
 AdminJS.registerAdapter(AdminJSSequelize);
 
 export const adminJs = new AdminJS({
   databases: [sequelize],
   rootPath: "/admin", // define o caminho /admin como a url de administrador
+  resources: adminJsResources,
   branding: {
     // esse objeto modifica os estilos default do adminJS
     companyName: "OneBitFlix",
