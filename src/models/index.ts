@@ -1,5 +1,9 @@
-// nesse arquivo servimos todos os models do projeto
+// nesse arquivo servimos todos os models do projeto e declaramos as associações entre eles
 
 import { Category } from "./Category";
+import { Course } from "./Course";
 
-export { Category };
+Category.hasMany(Course);
+Course.belongsTo(Category);
+
+export { Category, Course };
