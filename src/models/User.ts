@@ -4,6 +4,10 @@ import { sequelize } from "../database";
 import { DataTypes, Model, Optional } from "sequelize";
 import bcrypt from "bcrypt"; // criptografia de senhas
 
+// type usado lá em baixo na função do JWT
+// primeiro parâmetro é um erro e o segundo é o booleano que retorna true se a senha for valida
+type CheckPasswordCallback = (error?: Error, isSame?: boolean) => void;
+
 export interface User {
   id: number;
   firstName: string;
@@ -19,7 +23,9 @@ export interface UserCreationAttributes extends Optional<User, "id"> {}
 
 export interface UserInstance
   extends Model<User, UserCreationAttributes>,
-    User {}
+    User {
+  checkPassword: (password: string, callbackfn: CheckPasswordCallback) => void;
+}
 
 export const User = sequelize.define<UserInstance, User>(
   "users",
@@ -80,3 +86,17 @@ export const User = sequelize.define<UserInstance, User>(
     },
   }
 );
+
+// esse método utilizando o bcrypt será usado pelo JWT
+User.prototype.checkPassowrd = function (
+  password: string,
+  callbackfn: CheckPasswordCallback
+) {
+  bcrypt.compare(password, this.password, (error, isSame) => {
+    if (error) {
+      callbackfn(error);
+    } else {
+      callbackfn(error, isSame);
+    }
+  });
+};

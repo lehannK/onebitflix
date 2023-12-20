@@ -10,6 +10,9 @@ const app = express();
 // método para indicar ao express o diretório 'public', onde serão servidos os arquivos estáticos da página
 app.use(express.static("public"));
 
+// middleware que permite o express tratar conteúdos json
+app.use(express.json());
+
 app.use(adminJs.options.rootPath, adminJsRouter);
 
 app.use(router);
