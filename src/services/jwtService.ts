@@ -11,4 +11,9 @@ export const jwtService = {
       expiresIn: expiration,
     });
   },
+
+  // método de verificação de token
+  verifyToken: (token: string, callbackfn: jwt.VerifyCallback) => {
+    jwt.verify(token, secret, callbackfn);
+  },
 };

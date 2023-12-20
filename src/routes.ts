@@ -3,6 +3,7 @@
 import express from "express";
 import { categoriesController } from "./controllers/categoriesController";
 import { authController } from "./controllers/authController";
+import { ensureAuth } from "./middlewares/auth";
 
 const router = express.Router();
 
@@ -11,6 +12,8 @@ router.post("/auth/register", authController.register);
 router.post("/auth/login", authController.login);
 
 // no caminho /categories rodaremos a função de callback 'index' que foi definida no categoriesController
-router.get("/categories", categoriesController.index);
+// podemos definir o ensureAuth como um middleware para todas as rotas que quisermos exigir autenticação
+// no exemplo abaixo, a rota só executará o controlador se o middleware permitir
+router.get("/categories", ensureAuth, categoriesController.index);
 
 export { router };
