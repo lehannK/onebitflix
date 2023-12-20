@@ -1,11 +1,14 @@
-// import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
-// const secret = "chave-do-jwt";
+// secret = assinatura de validação
+// a assinatura de validação é um código que somente o emissor e o receptor do token devem conhecer
+const secret = "chave-do-jwt";
 
-// export const jwtService = {
-//   signToken: (payload: string | object | Buffer, expiration: string) => {
-//     return jwt.sign(payload, secret, {
-//       expiresIn: expiration,
-//     });
-//   },
-// };
+// método de assinatura de um novo token
+export const jwtService = {
+  signToken: (payload: string | object | Buffer, expiration: string) => {
+    return jwt.sign(payload, secret, {
+      expiresIn: expiration,
+    });
+  },
+};

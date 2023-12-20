@@ -87,8 +87,8 @@ export const User = sequelize.define<UserInstance, User>(
   }
 );
 
-// esse método utilizando o bcrypt será usado pelo JWT
-User.prototype.checkPassowrd = function (
+// função utilizada pelo JWT
+User.prototype.checkPassword = function (
   password: string,
   callbackfn: CheckPasswordCallback
 ) {
