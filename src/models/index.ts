@@ -5,10 +5,13 @@ import { Course } from "./Course";
 import { Episode } from "./Episode";
 import { User } from "./User";
 
-Category.hasMany(Course);
-Course.belongsTo(Category);
+// ***IMPORTANTE: Por algum motivo as relações abaixo impedem edições nos respectivos parâmetros
+// verificar o motivo
 
-Course.hasMany(Episode);
-Episode.belongsTo(Course);
+// Category.hasMany(Course);
+// Course.belongsTo(Category);
+
+// Course.hasMany(Episode);
+// Episode.belongsTo(Course);
 
 export { Category, Course, Episode, User };
