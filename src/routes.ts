@@ -4,6 +4,7 @@ import express from "express";
 import { categoriesController } from "./controllers/categoriesController";
 import { authController } from "./controllers/authController";
 import { ensureAuth } from "./middlewares/auth";
+import { coursesController } from "./controllers/coursesController";
 
 const router = express.Router();
 
@@ -16,5 +17,7 @@ router.post("/auth/login", authController.login);
 // no exemplo abaixo, a rota só executará o controlador se o middleware permitir
 router.get("/categories", ensureAuth, categoriesController.index);
 router.get("/categories/:id", categoriesController.show);
+
+router.get("/courses/:id", coursesController.show);
 
 export { router };

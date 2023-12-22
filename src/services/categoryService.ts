@@ -27,7 +27,7 @@ export const categoryService = {
     const categoryWithCourses = await Category.findByPk(id, {
       attributes: ["id", "name"],
       include: {
-        association: "courses",
+        association: "Courses",
         attributes: [
           "id",
           "name",

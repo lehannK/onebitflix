@@ -28,7 +28,7 @@ export const categoriesController = {
     try {
       const category = await categoryService.findByIdWithCourses(id);
 
-      return res.json(category);
+      return res.status(200).json(category);
     } catch (error) {
       if (error instanceof Error) {
         return res.status(400).json({ message: error.message });
