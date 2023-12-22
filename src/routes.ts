@@ -15,5 +15,6 @@ router.post("/auth/login", authController.login);
 // podemos definir o ensureAuth como um middleware para todas as rotas que quisermos exigir autenticação
 // no exemplo abaixo, a rota só executará o controlador se o middleware permitir
 router.get("/categories", ensureAuth, categoriesController.index);
+router.get("/categories/:id", categoriesController.show);
 
 export { router };
