@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import { Course } from "../models";
 
 export const courseService = {
@@ -45,5 +46,28 @@ export const courseService = {
       order: [["created_at", "DESC"]],
     });
     return courses;
+  },
+
+  findByName: async (name: string, page: number, perPage: number) => {
+    const offset = (page - 1) * perPage;
+
+    const { count, rows } = await Course.findAndCountAll({
+      attributes: ["id", "name", "synopsis", ["thumbnail_url", "thumbnailUrl"]],
+      where: {
+        name: {
+          // Op. é uma lib do sequelize que disponibiliza os operadores do SQL
+          // usamos o iLike para personalizar a experiencia de busca para trazer resultados semelhantes e não somente exatos
+          [Op.iLike]: `%${name}%`,
+        },
+      },
+      limit: perPage,
+      offset,
+    });
+    return {
+      courses: rows,
+      page,
+      perPage,
+      total: count,
+    };
   },
 };
