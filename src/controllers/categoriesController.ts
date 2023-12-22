@@ -3,7 +3,6 @@ import { categoryService } from "../services/categoryService";
 import { getPaginationParams } from "../helpers/getPaginationParams";
 
 export const categoriesController = {
-  // index é o método utilizado para requisições GET
   // GET /categories
   index: async (req: Request, res: Response) => {
     const [page, perPage] = getPaginationParams(req.query); // config de paginação
