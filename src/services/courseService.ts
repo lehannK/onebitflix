@@ -38,4 +38,12 @@ export const courseService = {
     // a cada execução, os 3 cursos exibidos serão diferentes
     return randomFeaturedCourses.slice(0, 3);
   },
+
+  getTopTenNewest: async () => {
+    const courses = await Course.findAll({
+      limit: 10,
+      order: [["created_at", "DESC"]],
+    });
+    return courses;
+  },
 };
