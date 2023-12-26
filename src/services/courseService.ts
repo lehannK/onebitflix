@@ -70,4 +70,35 @@ export const courseService = {
       total: count,
     };
   },
+
+  getTopTenByLikes: async () => {
+    // podemos usar o 'sequelize?.query' para escrever código SQL diretamente aqui
+    // isso permite consultas mais elaboradas do que simplesmente usar a estrutura de dados do sequelize
+    const result = await Course.sequelize?.query(
+      `
+      SELECT
+        courses.id,
+        courses.name,
+        courses.synopsis,
+        courses.thumbnail_url AS thumbnailUrl,
+        COUNT(users.id) AS likes
+      FROM courses 
+        LEFT OUTER JOIN likes
+          ON courses.id = likes.course_id
+          INNER JOIN users
+            ON users.id = likes.user_id
+      GROUP BY courses.id
+      ORDER BY likes DESC
+      LIMIT 10
+      `
+    );
+
+    // 'result' retorna uma tupla, onde queremos somente a primeira posição
+    if (result) {
+      const [topTen] = result;
+      return topTen;
+    } else {
+      return null;
+    }
+  },
 };
