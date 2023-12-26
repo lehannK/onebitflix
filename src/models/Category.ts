@@ -13,6 +13,7 @@ export interface Category {
 export interface CategoryCreationAttributes extends Optional<Category, "id"> {}
 
 // essa é a interface do objeto já instanciado, ou seja, após ele ser criado e inputado no db
+// "Model" é uma classe nativa do sequelize. É preciso usar ela para a herança funcionar
 export interface CategoryInstance
   extends Model<Category, CategoryCreationAttributes>,
     Category {}
