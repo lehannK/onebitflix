@@ -4,6 +4,7 @@ import { Category } from "./Category";
 import { Course } from "./Course";
 import { Episode } from "./Episode";
 import { User } from "./User";
+import { Favorite } from "./Favorite";
 
 // por padrão do sequelize, o nome da associação é sempre o plural da segunda tabela associada
 // quando quisermos referenciar essa associação em algum outro lugar, usamos o nome da associação
@@ -15,8 +16,16 @@ import { User } from "./User";
 Category.hasMany(Course);
 
 Course.belongsTo(Category);
+Course.belongsToMany(User, { through: Favorite }); // associação 'to many' que ocorre através do model Favorite
 Course.hasMany(Episode);
+Course.hasMany(Favorite, { as: "FavoritesUsers", foreignKey: "course_id" });
 
 Episode.belongsTo(Course);
 
-export { Category, Course, Episode, User };
+Favorite.belongsTo(Course);
+Favorite.belongsTo(User);
+
+User.belongsToMany(Course, { through: Favorite });
+User.hasMany(Favorite, { as: "FavoritesCourses", foreignKey: "user_id" });
+
+export { Category, Course, Episode, Favorite, User };
