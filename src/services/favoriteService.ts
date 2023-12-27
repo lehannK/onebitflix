@@ -1,4 +1,4 @@
-import { Favorite } from "../models";
+import { Favorite, WatchTime } from "../models";
 
 export const favoriteService = {
   // POST /favorites
