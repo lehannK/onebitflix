@@ -58,7 +58,7 @@ export const authController = {
 
         // se as verificações de email e senha forem válidas, o JWT gera um token
         // duração de 1d configurada
-        const token = jwtService.signToken(payload, "1d");
+        const token = jwtService.signToken(payload, "7d");
 
         return res.json({ authenticated: true, ...payload, token });
       });

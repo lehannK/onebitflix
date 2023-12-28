@@ -43,6 +43,7 @@ router.post(
   episodesController.setWatchTime
 );
 
+router.get("/users/current", ensureAuth, usersController.show);
 router.get("/users/current/watching", ensureAuth, usersController.watching);
 
 router.get("/favorites", ensureAuth, favoritesController.index);
