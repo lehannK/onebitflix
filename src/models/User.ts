@@ -3,6 +3,7 @@
 import { sequelize } from "../database";
 import { DataTypes, Model, Optional } from "sequelize";
 import bcrypt from "bcrypt"; // criptografia de senhas
+import { EpisodeInstance } from "./Episode";
 
 // type usado lá em baixo na função do JWT
 // primeiro parâmetro é um erro e o segundo é o booleano que retorna true se a senha for valida
@@ -24,6 +25,7 @@ export interface UserCreationAttributes extends Optional<User, "id"> {}
 export interface UserInstance
   extends Model<User, UserCreationAttributes>,
     User {
+  Episodes?: EpisodeInstance[];
   checkPassword: (password: string, callbackfn: CheckPasswordCallback) => void;
 }
 

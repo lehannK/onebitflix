@@ -8,6 +8,7 @@ import { coursesController } from "./controllers/coursesController";
 import { episodesController } from "./controllers/episodesController";
 import { favoritesController } from "./controllers/favoritesController";
 import { likesController } from "./controllers/likesController";
+import { usersController } from "./controllers/userController";
 
 const router = express.Router();
 
@@ -41,6 +42,8 @@ router.post(
   ensureAuth,
   episodesController.setWatchTime
 );
+
+router.get("/users/current/watching", ensureAuth, usersController.watching);
 
 router.get("/favorites", ensureAuth, favoritesController.index);
 router.post("/favorites", ensureAuth, favoritesController.save);
