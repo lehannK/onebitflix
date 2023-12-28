@@ -1,11 +1,17 @@
 // arquivo para configurar o express
 
 import express from "express";
+import cors from "cors";
 import { sequelize } from "./database";
 import { adminJs, adminJsRouter } from "./adminjs";
 import { router } from "./routes";
 
 const app = express();
+
+// cors é um middleware que permite que nosso backend se comunique com diferentes origens de domínio
+// necessário para impedir erros quando nosso backend se conectar com o frontend
+// temos diversas configurações disponíveis nele, por exemplo: definir especificamente quais serão os domínios aceitos e quais são as permissões http que esses domínios terão (GET E PUT, por exemplo)
+app.use(cors());
 
 // método para indicar ao express o diretório 'public', onde serão servidos os arquivos estáticos da página
 app.use(express.static("public"));
