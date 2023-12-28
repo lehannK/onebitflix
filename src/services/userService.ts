@@ -98,4 +98,13 @@ export const userService = {
 
     return updatedUsers[0]; // updatedUsers é um array, mas como iremos atualizar um usuário de cada vez, pegamos sempre a posição 0
   },
+
+  updatePassword: async (id: number, password: string) => {
+    const [affectedRows, updatedUsers] = await User.update(
+      { password },
+      { where: { id }, returning: true, individualHooks: true } // individualHooks vai rodar o hook definido lá no model User, que é responsável por encriptar a senha
+    );
+
+    return updatedUsers[0];
+  },
 };

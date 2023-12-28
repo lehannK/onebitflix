@@ -89,7 +89,7 @@ export const User = sequelize.define<UserInstance, User>(
   }
 );
 
-// função utilizada pelo JWT
+// função utilizada pelo bcrypt para comparar senha
 User.prototype.checkPassword = function (
   password: string,
   callbackfn: CheckPasswordCallback
