@@ -45,6 +45,7 @@ router.post(
 
 router.get("/users/current", ensureAuth, usersController.show);
 router.get("/users/current/watching", ensureAuth, usersController.watching);
+router.put("/users/current", ensureAuth, usersController.update);
 
 router.get("/favorites", ensureAuth, favoritesController.index);
 router.post("/favorites", ensureAuth, favoritesController.save);

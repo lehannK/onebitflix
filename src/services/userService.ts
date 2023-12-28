@@ -1,3 +1,4 @@
+import { AuthenticatedRequest } from "../middlewares/auth";
 import { User } from "../models";
 import { EpisodeInstance } from "../models/Episode";
 import { UserCreationAttributes } from "../models/User";
@@ -75,5 +76,26 @@ export const userService = {
     );
 
     return keepWatchingList;
+  },
+
+  // atualizar user
+  update: async (
+    id: number,
+    attributes: {
+      firstName: string;
+      lastName: string;
+      phone: string;
+      birth: Date;
+      email: string;
+    }
+  ) => {
+    // atualizar os atributos do usuário no qual o ID for o mesmo passado na query
+    // a variável abaixo foi desestruturada porque ela é automaticamente tipada como uma tupla de 2 valores. Somente o segundo é importante para o que queremos
+    const [affectedRows, updatedUsers] = await User.update(attributes, {
+      where: { id },
+      returning: true, // returning é um método exclusivo do postgre que retorna as linhas do banco de dados que foram modificadas
+    });
+
+    return updatedUsers[0]; // updatedUsers é um array, mas como iremos atualizar um usuário de cada vez, pegamos sempre a posição 0
   },
 };
