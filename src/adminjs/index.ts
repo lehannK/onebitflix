@@ -17,6 +17,9 @@ export const adminJs = new AdminJS({
   branding: brandingOptions, // arquivo de estilização geral (fontes, cores etc)
   locale: locale, // arquivo de tradução para pt-br
   dashboard: dashboardOptions, // arquivo de customização do dashboard
+  assets: {
+    styles: ["/index.css"], //css do adminjs, que por padrão deve estar na pasta public
+  },
 });
 
 // variável de construção de rotas autenticadas

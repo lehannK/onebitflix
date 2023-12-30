@@ -105,7 +105,7 @@ export const locale: Locale = {
       welcomeOnBoard_subtitle:
         "Agora você é um de nós! Preparamos algumas dicas para você começar:",
       loginWelcome:
-        "Ao AdminJS - o melhor framework admin para aplicações Node.js, baseado em React.",
+        "Portal CompaSSS - Seção administrativa de recursos e usuários",
       addingResources_title: "Adicionando Recursos",
       addingResources_subtitle: "Como adicionar novos recursos à barra lateral",
       customizeResources_title: "Personalizar Recursos",
