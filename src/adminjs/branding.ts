@@ -1,7 +1,7 @@
 import { BrandingOptions } from "adminjs";
 import tinycolor from "tinycolor2";
 
-// Função para criar a graduação de cores com base na cor primária --- verde da compasss
+// Função para criar a graduação de cores com base na cor primária, que é o verde da compasss
 const generateColors = (primaryColor: string) => {
   const primary = tinycolor(primaryColor);
   return {
