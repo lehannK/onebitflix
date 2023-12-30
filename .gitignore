@@ -1,5 +1,5 @@
 node_modules/
-!\node_modules\@adminjs\design-system\build\atoms\illustrations 
+!/node_modules/@adminjs/design-system/build/atoms/illustrations 
 
 uploads/*
 public/thumbnails
